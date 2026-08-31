@@ -1,0 +1,2540 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Darren.TKJ | Cyber Portfolio</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #050914;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           LOADER
+        ========================= */
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: #050914;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: 0.7s;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-size: 35px;
+            font-weight: bold;
+            color: #38bdf8;
+            text-shadow: 0 0 25px #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .loader-bar {
+            width: 240px;
+            height: 5px;
+            background: #172033;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .loader-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+            animation: load 2s forwards;
+        }
+
+        @keyframes load {
+            to {
+                width: 100%;
+            }
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .grid {
+            position: fixed;
+            inset: 0;
+            z-index: -10;
+
+            background-image:
+                linear-gradient(rgba(56,189,248,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56,189,248,0.035) 1px, transparent 1px);
+
+            background-size: 40px 40px;
+        }
+
+        .glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.2;
+            z-index: -5;
+            pointer-events: none;
+        }
+
+        .glow.one {
+            width: 350px;
+            height: 350px;
+            background: #0284c7;
+            top: -100px;
+            left: -100px;
+        }
+
+        .glow.two {
+            width: 400px;
+            height: 400px;
+            background: #7c3aed;
+            right: -150px;
+            bottom: -150px;
+        }
+
+        .glow.three {
+            width: 250px;
+            height: 250px;
+            background: #06b6d4;
+            top: 40%;
+            left: 40%;
+            opacity: 0.1;
+        }
+
+        /* =========================
+           PARTICLES
+        ========================= */
+
+        .particle {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+
+            background: #38bdf8;
+            box-shadow: 0 0 12px #38bdf8;
+
+            z-index: -2;
+
+            animation: particle 8s linear infinite;
+        }
+
+        .p1 { left: 10%; top: 90%; }
+        .p2 { left: 20%; top: 70%; animation-delay: 1s; }
+        .p3 { left: 35%; top: 80%; animation-delay: 2s; }
+        .p4 { left: 50%; top: 90%; animation-delay: 3s; }
+        .p5 { left: 65%; top: 70%; animation-delay: 1.5s; }
+        .p6 { left: 80%; top: 85%; animation-delay: 2.5s; }
+        .p7 { left: 90%; top: 60%; animation-delay: 4s; }
+
+        @keyframes particle {
+
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+
+            40% {
+                opacity: 0.8;
+            }
+
+            to {
+                transform: translateY(-900px);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           CURSOR
+        ========================= */
+
+        .cursor {
+            width: 15px;
+            height: 15px;
+
+            border: 2px solid #38bdf8;
+            border-radius: 50%;
+
+            position: fixed;
+
+            pointer-events: none;
+
+            z-index: 9999;
+
+            transform: translate(-50%, -50%);
+
+            box-shadow:
+                0 0 15px #38bdf8;
+        }
+
+        @media (max-width: 700px) {
+
+            .cursor {
+                display: none;
+            }
+
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 18px 10%;
+
+            background: rgba(5,9,20,0.75);
+            backdrop-filter: blur(18px);
+
+            border-bottom:
+                1px solid rgba(56,189,248,0.15);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+
+            color: #38bdf8;
+
+            text-shadow:
+                0 0 15px #38bdf8;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+            text-shadow:
+                0 0 12px #38bdf8;
+        }
+
+        .menu {
+            display: none;
+
+            border: none;
+            background: transparent;
+
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer;
+        }
+
+        .mode {
+            border: none;
+            background: transparent;
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 92vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 30px;
+
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 850px;
+
+            animation: heroIn 1.2s ease;
+        }
+
+        @keyframes heroIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px 17px;
+
+            border-radius: 50px;
+
+            color: #4ade80;
+
+            background: rgba(74,222,128,0.08);
+
+            border:
+                1px solid rgba(74,222,128,0.25);
+
+            margin-bottom: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #4ade80;
+
+            box-shadow:
+                0 0 10px #4ade80;
+
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+
+            50% {
+                opacity: 0.3;
+            }
+
+        }
+
+        .hero h1 {
+            font-size: 65px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+
+            text-shadow:
+                0 0 25px #38bdf8;
+        }
+
+        .typing {
+            color: #a5f3fc;
+            font-size: 25px;
+
+            min-height: 35px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #94a3b8;
+
+            font-size: 18px;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 15px 30px;
+
+            border-radius: 10px;
+
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0ea5e9,
+                    #7c3aed
+                );
+
+            box-shadow:
+                0 0 25px rgba(56,189,248,0.3);
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 0 40px rgba(56,189,248,0.6);
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .title {
+            text-align: center;
+
+            font-size: 38px;
+
+            color: #38bdf8;
+        }
+
+        .line {
+            width: 80px;
+            height: 4px;
+
+            margin: 15px auto;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #38bdf8,
+                    #8b5cf6
+                );
+        }
+
+        .subtitle {
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 50px;
+        }
+
+        /* =========================
+           TERMINAL
+        ========================= */
+
+        .terminal {
+            max-width: 850px;
+
+            margin: auto;
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+            background: #020617;
+
+            border:
+                1px solid rgba(56,189,248,0.25);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .terminal-top {
+            padding: 12px 15px;
+
+            background: #111827;
+
+            display: flex;
+
+            gap: 8px;
+        }
+
+        .terminal-top span {
+            width: 12px;
+            height: 12px;
+
+            border-radius: 50%;
+
+            background: #334155;
+        }
+
+        .terminal-body {
+            padding: 25px;
+
+            color: #4ade80;
+
+            font-family: monospace;
+
+            line-height: 1.8;
+
+            min-height: 200px;
+        }
+
+        .terminal-body .blue {
+            color: #38bdf8;
+        }
+
+        .terminal-body .purple {
+            color: #a78bfa;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            max-width: 900px;
+
+            margin: 50px auto 0;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(15,23,42,0.7);
+
+            border:
+                1px solid rgba(56,189,248,0.15);
+
+            color: #cbd5e1;
+
+            line-height: 1.8;
+        }
+
+        .about strong {
+            color: #38bdf8;
+        }
+
+        /* =========================
+           NETWORK
+        ========================= */
+
+        .network {
+            max-width: 900px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .device {
+            width: 150px;
+
+            padding: 25px 15px;
+
+            text-align: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(15,23,42,0.8);
+
+            border:
+                1px solid rgba(56,189,248,0.2);
+
+            transition: 0.3s;
+        }
+
+        .device:hover {
+            transform: translateY(-10px);
+
+            border-color: #38bdf8;
+
+            box-shadow:
+                0 0 25px rgba(56,189,248,0.2);
+        }
+
+        .device-icon {
+            font-size: 45px;
+
+            margin-bottom: 10px;
+        }
+
+        .device h3 {
+            color: #38bdf8;
+
+            font-size: 17px;
+        }
+
+        .device p {
+            color: #64748b;
+
+            font-size: 12px;
+
+            margin-top: 5px;
+        }
+
+        .connection {
+            color: #38bdf8;
+
+            font-size: 25px;
+
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            50% {
+                opacity: 0.3;
+            }
+
+        }
+
+        /* =========================
+           SKILLS
+        ========================= */
+
+        .skills {
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+        .skill {
+            margin-bottom: 25px;
+        }
+
+        .skill-info {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+        }
+
+        .skill-info span:last-child {
+            color: #38bdf8;
+        }
+
+        .bar {
+            width: 100%;
+
+            height: 10px;
+
+            border-radius: 20px;
+
+            background: #172033;
+
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #0ea5e9,
+                    #8b5cf6
+                );
+
+            box-shadow:
+                0 0 15px rgba(56,189,248,0.5);
+        }
+
+        .html { width: 90%; }
+        .css { width: 85%; }
+        .network { width: 80%; }
+        .python { width: 70%; }
+        .javascript { width: 60%; }
+
+        /* =========================
+           PROJECT
+        ========================= */
+
+        .projects {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 25px;
+        }
+
+        .card {
+            width: 310px;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background:
+                rgba(15,23,42,0.75);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            transition: 0.4s;
+
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+
+            border-color: #38bdf8;
+
+            box-shadow:
+                0 15px 40px rgba(56,189,248,0.15);
+        }
+
+        .card-icon {
+            height: 170px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 65px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0284c7,
+                    #7c3aed
+                );
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-body h3 {
+            color: #38bdf8;
+
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            color: #94a3b8;
+
+            line-height: 1.6;
+        }
+
+        /* =========================
+           TIMELINE
+        ========================= */
+
+        .timeline {
+            max-width: 800px;
+
+            margin: auto;
+
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 2px;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    #38bdf8,
+                    #8b5cf6
+                );
+        }
+
+        .timeline-item {
+            width: 50%;
+
+            padding: 20px 35px;
+
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+
+            width: 14px;
+            height: 14px;
+
+            border-radius: 50%;
+
+            background: #38bdf8;
+
+            box-shadow:
+                0 0 15px #38bdf8;
+
+            top: 30px;
+        }
+
+        .timeline-item:nth-child(odd)
+        .timeline-dot {
+            right: -7px;
+        }
+
+        .timeline-item:nth-child(even)
+        .timeline-dot {
+            left: -7px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(15,23,42,0.75);
+
+            border:
+                1px solid rgba(56,189,248,0.15);
+        }
+
+        .timeline-content h3 {
+            color: #38bdf8;
+
+            margin-bottom: 8px;
+        }
+
+        .timeline-content p {
+            color: #94a3b8;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            max-width: 650px;
+
+            margin: auto;
+
+            padding: 35px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(15,23,42,0.75);
+
+            border:
+                1px solid rgba(56,189,248,0.15);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+
+            padding: 15px;
+
+            margin-bottom: 15px;
+
+            border-radius: 10px;
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+
+            outline: none;
+
+            background: #080d19;
+
+            color: white;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #38bdf8;
+
+            box-shadow:
+                0 0 15px rgba(56,189,248,0.15);
+        }
+
+        textarea {
+            height: 130px;
+
+            resize: none;
+        }
+
+        .send {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0ea5e9,
+                    #7c3aed
+                );
+
+            transition: 0.3s;
+        }
+
+        .send:hover {
+            transform: scale(1.02);
+
+            box-shadow:
+                0 0 25px rgba(56,189,248,0.4);
+        }
+
+        /* =========================
+           CLOCK
+        ========================= */
+
+        .clock {
+            text-align: center;
+
+            margin-top: 35px;
+        }
+
+        #clock {
+            color: #38bdf8;
+
+            font-size: 30px;
+
+            text-shadow:
+                0 0 15px #38bdf8;
+        }
+
+        #date {
+            color: #64748b;
+
+            margin-top: 8px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0,0,0,0.75);
+
+            backdrop-filter: blur(8px);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 5000;
+
+            padding: 20px;
+        }
+
+        .modal-box {
+            max-width: 500px;
+
+            width: 100%;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            background: #0f172a;
+
+            border:
+                1px solid #38bdf8;
+
+            box-shadow:
+                0 0 40px rgba(56,189,248,0.2);
+
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+
+            right: 20px;
+            top: 15px;
+
+            border: none;
+
+            background: transparent;
+
+            color: white;
+
+            font-size: 25px;
+
+            cursor: pointer;
+        }
+
+        .modal-box h2 {
+            color: #38bdf8;
+
+            margin-bottom: 15px;
+        }
+
+        .modal-box p {
+            color: #94a3b8;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        #top {
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            width: 45px;
+            height: 45px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0ea5e9,
+                    #7c3aed
+                );
+
+            color: white;
+
+            font-size: 20px;
+
+            cursor: pointer;
+
+            display: none;
+
+            z-index: 1000;
+
+            box-shadow:
+                0 0 20px rgba(56,189,248,0.4);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 35px;
+
+            text-align: center;
+
+            background: #030712;
+
+            border-top:
+                1px solid rgba(56,189,248,0.15);
+
+            color: #64748b;
+        }
+
+        footer span {
+            color: #38bdf8;
+        }
+
+        /* =========================
+           SCROLL ANIMATION
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform: translateY(40px);
+
+            transition:
+                opacity 0.8s,
+                transform 0.8s;
+        }
+
+        .reveal.active {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 15px 7%;
+            }
+
+            nav ul {
+                display: none;
+
+                position: absolute;
+
+                top: 65px;
+
+                left: 0;
+
+                width: 100%;
+
+                flex-direction: column;
+
+                align-items: center;
+
+                gap: 20px;
+
+                padding: 25px;
+
+                background:
+                    rgba(5,9,20,0.95);
+
+                border-bottom:
+                    1px solid rgba(56,189,248,0.2);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .typing {
+                font-size: 20px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 75px 7%;
+            }
+
+            .title {
+                font-size: 30px;
+            }
+
+            .network {
+                flex-direction: column;
+            }
+
+            .connection {
+                transform: rotate(90deg);
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+
+                left: 0;
+
+                text-align: left;
+
+                padding-left: 35px;
+
+                padding-right: 0;
+            }
+
+            .timeline-item:nth-child(odd)
+            .timeline-dot,
+            .timeline-item:nth-child(even)
+            .timeline-dot {
+                left: 3px;
+                right: auto;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- LOADING -->
+
+    <div id="loader">
+
+        <div class="loader-content">
+
+            <div class="loader-logo">
+                WELCOME
+            </div>
+
+            <div class="loader-bar">
+                <div class="loader-fill"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CURSOR -->
+
+    <div class="cursor"></div>
+
+
+    <!-- BACKGROUND -->
+
+    <div class="grid"></div>
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="glow three"></div>
+
+
+    <!-- PARTICLES -->
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+    <div class="particle p6"></div>
+    <div class="particle p7"></div>
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            GREGORIUS.PROGRAM
+        </div>
+
+        <button class="menu" onclick="menu()">
+            ☰
+        </button>
+
+        <ul id="navList">
+
+            <li>
+                <a href="#home">Home</a>
+            </li>
+
+            <li>
+                <a href="#about">About</a>
+            </li>
+
+            <li>
+                <a href="#network">Network</a>
+            </li>
+
+            <li>
+                <a href="#skills">Skills</a>
+            </li>
+
+            <li>
+                <a href="#projects">Projects</a>
+            </li>
+
+            <li>
+                <a href="#timeline">Journey</a>
+            </li>
+
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+        </ul>
+
+        <button class="mode" onclick="mode()">
+            🌙
+        </button>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="status">
+
+                <div class="dot"></div>
+
+                System Online
+
+            </div>
+
+
+            <h1>
+                Halo, Saya
+                <span>Darren</span>
+            </h1>
+
+
+            <div class="typing" id="typing"></div>
+
+
+            <p>
+
+                Pelajar TKJ yang sedang menjelajahi
+                dunia jaringan komputer, programming,
+                dan web development.
+
+            </p>
+
+
+            <a href="#about" class="btn">
+
+                Explore Portfolio 🚀
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- TERMINAL -->
+
+    <section class="reveal">
+
+        <h2 class="title">
+            Terminal
+        </h2>
+
+        <div class="line"></div>
+
+        <p class="subtitle">
+            Welcome to my digital workspace
+        </p>
+
+
+        <div class="terminal">
+
+            <div class="terminal-top">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+            <div class="terminal-body">
+
+                <div>
+                    <span class="blue">
+                        darren@tkj
+                    </span>:~$
+                    whoami
+                </div>
+
+                <div>
+                    > TKJ Student
+                </div>
+
+                <br>
+
+                <div>
+                    <span class="blue">
+                        darren@tkj
+                    </span>:~$
+                    status
+                </div>
+
+                <div>
+                    > <span class="purple">
+                        Learning Mode: ACTIVE
+                    </span>
+                </div>
+
+                <div>
+                    > Network: ONLINE ✓
+                </div>
+
+                <div>
+                    > System: READY ✓
+                </div>
+
+                <br>
+
+                <div>
+                    <span class="blue">
+                        darren@tkj
+                    </span>:~$
+                    _
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section id="about" class="reveal">
+
+        <h2 class="title">
+            Tentang Saya
+        </h2>
+
+        <div class="line"></div>
+
+        <p class="subtitle">
+            Sedikit informasi tentang saya
+        </p>
+
+
+        <div class="about">
+
+            <p>
+
+                👋 Halo! Saya
+                <strong>Darren</strong>,
+
+                seorang pelajar jurusan
+                <strong>Teknik Komputer dan Jaringan</strong>.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                💻 Saya tertarik dengan dunia teknologi,
+                terutama jaringan komputer, pemrograman,
+                dan pembuatan website.
+
+            </p>
+
+            <br>
+
+            <p>
+
+                🚀 Website ini dibuat sebagai portfolio
+                sekaligus tempat untuk mendokumentasikan
+                perjalanan belajar saya.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- NETWORK -->
+
+    <section id="network" class="reveal">
+
+        <h2 class="title">
+            Network Lab
+        </h2>
+
+        <div class="line"></div>
+
+        <p class="subtitle">
+            Simulasi sederhana jaringan komputer
+        </p>
+
+
+        <div class="network">
+
+
+            <div class="device">
+
+                <div class="device-icon">
+                    💻
+                </div>
+
+                <h3>
+                    PC
+                </h3>
+
+                <p>
+                    192.168.1.10
+                </p>
+
+            </div>
+
+
+            <div class="connection">
+                →
+            </div>
+
+
+            <div class="device">
+
+                <div class="device-icon">
+                    🔀
+                </div>
+
+                <h3>
+                    Switch
+                </h3>
+
+                <p>
+                    LAN Network
+                </p>
+
+            </div>
+
+
+            <div class="connection">
+                →
+            </div>
+
+
+            <div class="device">
+
+                <div class="device-icon">
+                    📡
+                </div>
+
+                <h3>
+                    Router
+                </h3>
+
+                <p>
+                    Gateway
+                </p>
+
+            </div>
+
+
+            <div class="connection">
+                →
+            </div>
+
+
+            <div class="device">
+
+                <div class="device-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    Internet
+                </h3>
+
+                <p>
+                    Online
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section id="skills" class="reveal">
+
+        <h2 class="title">
+            My Skills
+        </h2>
+
+        <div class="line"></div>
+
+        <p class="subtitle">
+            Teknologi yang sedang dipelajari
+        </p>
+
+
+        <div class="skills">
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+
+                    <span>
+                        HTML
+                    </span>
+
+                    <span>
+                        90%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+                    <div class="fill html"></div>
+                </div>
+
+            </div>
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+
+                    <span>
+                        CSS
+                    </span>
+
+                    <span>
+                        85%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+                    <div class="fill css"></div>
+                </div>
+
+            </div>
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+
+                    <span>
+                        Networking
+                    </span>
+
+                    <span>
+                        80%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+                    <div class="fill network"></div>
+                </div>
+
+            </div>
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+
+                    <span>
+                        Python
+                    </span>
+
+                    <span>
+                        70%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+                    <div class="fill python"></div>
+                </div>
+
+            </div>
+
+
+            <div class="skill">
+
+                <div class="skill-info">
+
+                    <span>
+                        JavaScript
+                    </span>
+
+                    <span>
+                        60%
+                    </span>
+
+                </div>
+
+                <div class="bar">
+                    <div class="fill javascript"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROJECTS -->
+
+    <section id="projects" class="reveal">
+
+        <h2 class="title">
+            My Projects
+        </h2>
+
+        <div class="line"></div>
+
+        <p class="subtitle">
+            Klik project untuk melihat detail
+        </p>
+
+
+        <div class="projects">
+
+
+            <div
+                class="card"
+                onclick="openProject('Cisco Packet Tracer')"
+            >
+
+                <div class="card-icon">
+                    🌐
+                </div>
+
+                <div class="card-body">
+
+                    <h3>
+                        Cisco Packet Tracer
+                    </h3>
+
+                    <p>
+                        Simulasi jaringan komputer
+                        dan konfigurasi perangkat.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="card"
+                onclick="openProject('Python Programming')"
+            >
+
+                <div class="card-icon">
+                    🐍
+                </div>
+
+                <div class="card-body">
+
+                    <h3>
+                        Python Programming
+                    </h3>
+
+                    <p>
+                        Program sederhana menggunakan
+                        Python.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                class="card"
+                onclick="openProject('Web Portfolio')"
+            >
+
+                <div class="card-icon">
+                    💻
+                </div>
+
+                <div class="card-body">
+
+                    <h3>
+                        Web Portfolio
+                    </h3>
+
+                    <p>
+                        Website portfolio menggunakan
+                        HTML, CSS, dan JavaScript.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TIMELINE -->
+
+    <section id="timeline" class="reveal">
+
+        <h2 class="title">
+            Learning Journey
+        </h2>
+
+        <div class="line"></div>
+
+        <p class="subtitle">
+            Perjalanan belajar teknologi
+        </p>
+
+
+        <div class="timeline">
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        HTML
+                    </h3>
+
+                    <p>
+                        Mulai memahami struktur dasar
+                        sebuah website.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        CSS
+                    </h3>
+
+                    <p>
+                        Mulai membuat website
+                        terlihat lebih menarik.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Python
+                    </h3>
+
+                    <p>
+                        Belajar logika pemrograman,
+                        if, loop, dan function.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        Networking
+                    </h3>
+
+                    <p>
+                        Belajar IP Address,
+                        Switch, Router, dan
+                        konfigurasi jaringan.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item">
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <h3>
+                        JavaScript
+                    </h3>
+
+                    <p>
+                        Mulai membuat website
+                        menjadi lebih interaktif.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact" class="reveal">
+
+        <h2 class="title">
+            Contact
+        </h2>
+
+        <div class="line"></div>
+
+        <p class="subtitle">
+            Kirim pesan kepada saya
+        </p>
+
+
+        <div class="contact">
+
+            <input
+                id="name"
+                type="text"
+                placeholder="👤 Nama kamu"
+            >
+
+            <input
+                id="email"
+                type="email"
+                placeholder="📧 Email kamu"
+            >
+
+            <textarea
+                id="message"
+                placeholder="💬 Tulis pesan..."
+            ></textarea>
+
+            <button
+                class="send"
+                onclick="sendMessage()"
+            >
+                Kirim Pesan 🚀
+            </button>
+
+        </div>
+
+
+        <div class="clock">
+
+            <div id="clock">
+                00:00:00
+            </div>
+
+            <div id="date">
+                Loading...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <p>
+            © 2026
+            <span>Darren.TKJ</span>
+            | Cyber Portfolio
+        </p>
+
+        <br>
+
+        <p>
+            Built with HTML • CSS • JavaScript ⚡
+        </p>
+
+    </footer>
+
+
+    <!-- PROJECT MODAL -->
+
+    <div class="modal" id="modal">
+
+        <div class="modal-box">
+
+            <button
+                class="close"
+                onclick="closeProject()"
+            >
+                ×
+            </button>
+
+            <h2 id="modalTitle">
+                Project
+            </h2>
+
+            <p id="modalText">
+                Project detail
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- BACK TO TOP -->
+
+    <button
+        id="top"
+        onclick="topPage()"
+    >
+        ↑
+    </button>
+
+
+    <script>
+
+
+        /* =========================
+           LOADER
+        ========================= */
+
+        window.addEventListener(
+            "load",
+            function () {
+
+                setTimeout(
+                    function () {
+
+                        document
+                            .getElementById("loader")
+                            .style.opacity = "0";
+
+                        setTimeout(
+                            function () {
+
+                                document
+                                    .getElementById("loader")
+                                    .style.display = "none";
+
+                            },
+                            700
+                        );
+
+                    },
+                    2000
+                );
+
+            }
+        );
+
+
+        /* =========================
+           TYPING
+        ========================= */
+
+        const texts = [
+
+            "TKJ Student 💻",
+            "Network Enthusiast 🌐",
+            "Python Learner 🐍",
+            "Web Developer 🚀",
+            "Tech Enthusiast ⚡"
+
+        ];
+
+        let textIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+
+        function typingEffect() {
+
+            const typing =
+                document.getElementById("typing");
+
+            const current =
+                texts[textIndex];
+
+
+            if (!deleting) {
+
+                typing.textContent =
+                    current.substring(
+                        0,
+                        charIndex + 1
+                    );
+
+                charIndex++;
+
+
+                if (
+                    charIndex ===
+                    current.length
+                ) {
+
+                    deleting = true;
+
+                    setTimeout(
+                        typingEffect,
+                        1200
+                    );
+
+                    return;
+
+                }
+
+            }
+
+            else {
+
+                typing.textContent =
+                    current.substring(
+                        0,
+                        charIndex - 1
+                    );
+
+                charIndex--;
+
+
+                if (charIndex === 0) {
+
+                    deleting = false;
+
+                    textIndex++;
+
+                    if (
+                        textIndex ===
+                        texts.length
+                    ) {
+
+                        textIndex = 0;
+
+                    }
+
+                }
+
+            }
+
+            setTimeout(
+                typingEffect,
+                deleting ? 50 : 100
+            );
+
+        }
+
+        typingEffect();
+
+
+        /* =========================
+           CLOCK
+        ========================= */
+
+        function clock() {
+
+            const now =
+                new Date();
+
+
+            document
+                .getElementById("clock")
+                .textContent =
+                now.toLocaleTimeString(
+                    "id-ID"
+                );
+
+
+            document
+                .getElementById("date")
+                .textContent =
+                now.toLocaleDateString(
+                    "id-ID",
+                    {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric"
+                    }
+                );
+
+        }
+
+        setInterval(clock, 1000);
+
+        clock();
+
+
+        /* =========================
+           CURSOR
+        ========================= */
+
+        const cursor =
+            document.querySelector(".cursor");
+
+
+        document.addEventListener(
+            "mousemove",
+            function (e) {
+
+                cursor.style.left =
+                    e.clientX + "px";
+
+                cursor.style.top =
+                    e.clientY + "px";
+
+            }
+        );
+
+        /* =========================
+           MOBILE MENU
+        ========================= */
+
+        function menu() {
+
+            document
+                .getElementById("navList")
+                .classList.toggle("show");
+
+        }
+
+
+        /* =========================
+           DARK / LIGHT
+        ========================= */
+
+        function mode() {
+
+            document.body.classList.toggle(
+                "light"
+            );
+
+        }
+
+
+        /* =========================
+           PROJECT MODAL
+        ========================= */
+
+        function openProject(project) {
+
+            const modal =
+                document.getElementById("modal");
+
+            const title =
+                document.getElementById("modalTitle");
+
+            const text =
+                document.getElementById("modalText");
+
+
+            title.textContent = project;
+
+
+            if (
+                project ===
+                "Cisco Packet Tracer"
+            ) {
+
+                text.textContent =
+                    "Project simulasi jaringan menggunakan Cisco Packet Tracer. Mempelajari IP Address, Switch, Router, dan koneksi antar perangkat.";
+
+            }
+
+
+            if (
+                project ===
+                "Python Programming"
+            ) {
+
+                text.textContent =
+                    "Project latihan Python seperti program login, menu, perhitungan nilai, percabangan, looping, dan input.";
+
+            }
+
+
+            if (
+                project ===
+                "Web Portfolio"
+            ) {
+
+                text.textContent =
+                    "Website portfolio yang dibuat menggunakan HTML, CSS, dan JavaScript dengan berbagai animasi dan interaksi.";
+
+            }
+
+
+            modal.style.display =
+                "flex";
+
+        }
+
+
+        function closeProject() {
+
+            document
+                .getElementById("modal")
+                .style.display =
+                "none";
+
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        function sendMessage() {
+
+            const name =
+                document.getElementById("name")
+                    .value;
+
+            const email =
+                document.getElementById("email")
+                    .value;
+
+            const message =
+                document.getElementById("message")
+                    .value;
+
+
+            if (
+                name === "" ||
+                email === "" ||
+                message === ""
+            ) {
+
+                alert(
+                    "⚠️ Semua kolom harus diisi!"
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                "🚀 Pesan berhasil dikirim!\n\n" +
+                "Terima kasih, " +
+                name +
+                "!"
+            );
+
+
+            document
+                .getElementById("name")
+                .value = "";
+
+            document
+                .getElementById("email")
+                .value = "";
+
+            document
+                .getElementById("message")
+                .value = "";
+
+        }
+
+
+        /* =========================
+           SCROLL REVEAL
+        ========================= */
+
+        const reveals =
+            document.querySelectorAll(
+                ".reveal"
+            );
+
+
+        function reveal() {
+
+            reveals.forEach(
+                function (element) {
+
+                    const windowHeight =
+                        window.innerHeight;
+
+                    const elementTop =
+                        element.getBoundingClientRect()
+                            .top;
+
+
+                    if (
+                        elementTop <
+                        windowHeight - 100
+                    ) {
+
+                        element.classList.add(
+                            "active"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            reveal
+        );
+
+        reveal();
+
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        const topButton =
+            document.getElementById("top");
+
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                if (
+                    window.scrollY > 500
+                ) {
+
+                    topButton.style.display =
+                        "block";
+
+                }
+
+                else {
+
+                    topButton.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        function topPage() {
+
+            window.scrollTo(
+                {
+                    top: 0,
+                    behavior: "smooth"
+                }
+            );
+
+        }
+
+
+        /* =========================
+           CLOSE MODAL
+        ========================= */
+
+        window.addEventListener(
+            "click",
+            function (e) {
+
+                const modal =
+                    document.getElementById(
+                        "modal"
+                    );
+
+                if (e.target === modal) {
+
+                    closeProject();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
+```
